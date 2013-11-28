@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+<!-- block to display wie zijn wij -->
+{% block content %}
+	<h3>Jobby is...</h3>
+	<p>Uw locatie om IT vacatures op te sporen of zelf een vacature te plaatsen. Door middel van een eenvoudige registratie kunt u direct deelnemen aan Jobby.</p>
+{% endblock %}

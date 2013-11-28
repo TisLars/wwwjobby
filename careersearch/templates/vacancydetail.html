@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+<!-- block to display 1 detailed vacancy item -->
+{% block content %}
+	<h3><a href="/careersearch/{{ detail_vacancy_list.id }}">{{ detail_vacancy_list.title }}</a></h3>
+	<div class="post_meta">
+		Geplaatst {{ detail_vacancy_list.date|date:"d-m" }} <br /> <br />
+	</div>
+
+	<div class="post_body">
+		{{ detail_vacancy_list.body|safe|linebreaks }}
+	</div>
+{% endblock %}

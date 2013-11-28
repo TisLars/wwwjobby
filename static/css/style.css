@@ -1,0 +1,144 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, a, font, img {
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	outline: 0px none;
+	font-family:verdana, serif;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: none repeat scroll 0% 0% transparent;
+}
+
+body {
+	color:#000000;
+	background-color: #e2e2e2;
+}
+
+#headerWrapper {
+	width: 100%;
+	background-color:#206676;
+}
+
+#header {
+	width: 100%;
+	height: 100px;
+	margin: 0 auto;
+	padding: 0%;
+}
+
+#logo {
+	margin: 0px;
+	padding: 0px;
+}
+
+#logo h1 {
+	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
+	letter-spacing: 10px;
+	text-align: center;
+	font-size: 5em;
+	margin: 0px;
+	color: white;
+}
+
+#menu {
+	width: 100%;
+	height: 40px;
+	margin: 0 auto;
+	padding: 0%;
+	text-align: center;
+}
+
+#menu ul {
+	list-style-type: none;
+}
+
+#menu ul li {
+	display: inline;
+	margin: 0;
+}
+
+#menu ul li a {
+	padding: 10px;
+	padding-bottom: 2%;
+	background-color: #04819E;
+	color: white;
+}
+
+#menu ul li a:hover {
+	background-color: #015367;  
+}
+
+#wrapper {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+}
+
+#search {
+	margin-bottom: 2%;
+	padding: 1%;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-bottom-right-radius: 5px;
+	text-align: center;
+	background-color: #60B9CE;
+}
+
+#page {
+	text-align: left;
+	width: 80%;
+	min-height: 100%;
+	margin: 0 auto;
+}
+
+#contentWrapper {
+	padding: 2%;
+	background-color: white;
+}
+
+.headlines {
+	float: left;
+	width: 15%;
+	font-size: 100%;
+	padding: 1%;
+	-webkit-border-top-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.headlines p {
+	font-size: 80%;
+}
+
+.careerItem {
+	width: 80%;
+	padding: 1%;
+	float: right;
+	color: black;
+	font-size: 100%;
+	margin: 0px;
+	border-left: 1px solid #e2e2e2;
+}
+
+.post_meta {
+	font-size: 80%;
+	font-style: italic;
+}
+
+.mainFooter {
+	float: left;
+	text-align: center;
+	width: 100%;
+	padding: 1% 0% 1% 0%;
+	margin: 0 auto;
+	margin-top: 2%;
+	background-color: #60B9CE;
+	border-radius: 5px;
+}
