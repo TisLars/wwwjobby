@@ -1,0 +1,117 @@
+{% extends "careersearch/base.html" %}
+
+<!-- block to display user auth status and registration link -->
+{% block auth %}
+ {% if user.is_authenticated %}
+  <a href="/accounts/logout/">logout</a>
+ {% else %}
+  <a href="/accounts/login/">login</a>
+ {% endif %}
+{% endblock %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+<!-- block to display 1 detailed vacancy item -->
+{% block content %}
+
+	<p class="back">
+		<a href="/vacancy/overview/"> &lt; Terug naar overzicht </a>
+	</p>
+
+	<div id="vacancy">
+		<h2><a href="/vacancy/{{ vacancy.id }}">{{ vacancy.job|safe }}</a></h2>
+		
+		<div class="linked">
+			Deze vacature is gelinked met de volgende cv's:
+			<ul>
+			{% for m in match %}
+				<li><a href="/cv/{{ m.cv_id }}">{{ m.cv_id }}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+		
+		<div class="timestamp">
+			Geplaatst op: {{ vacancy.timestamp|date:"d-m" }} <br /> <br />
+		</div>
+		
+		
+			
+		<div class="information">
+			<div class="info_label"><span>Regio:</span> {{ vacancy.region|safe }}</div>
+			<div class="info_label"><span>Sector:</span> {{ vacancy.sector|safe }}</div>
+			{% if vacancy.employment.lower != "stage" %}
+				<div class="info_label"><span>Niveau:</span> {{ vacancy.level|safe }}</div>
+				<div class="info_label"><span>Dienstverband:</span> {{ vacancy.employment|safe }}</div>
+			{% else %}
+				<div class="info_label"><span>Dienstverband:</span> {{ vacancy.employment|safe }}</div>
+				<div class="info_label"><span>Uren:</span> {{ vacancy.level|safe }}</div>
+			{% endif %}
+		</div>
+	
+		<div class="beschrijving">
+			<h3>Beschrijving</h3>
+			<p>
+					{% if vacancy.description == "null" %}
+						Deze informatie is helaas niet beschikbaar
+					{% else %}
+						{{ vacancy.description|safe|linebreaks }}
+					{% endif %}
+			</p>
+		</div>
+		
+		<div class="offer">
+			<h3>Aanbod</h3>
+			<p>
+					{% if vacancy.offer == "null" %}
+						Deze informatie is helaas niet beschikbaar
+					{% else %}
+						{{ vacancy.offer|safe|linebreaks }}
+					{% endif %}
+			</p>
+		</div>
+		
+		<div class="properties">
+			<h3>Eigenschappen</h3>
+			<p>
+					{% if vacancy.properties == "null" %}
+						Deze informatie is helaas niet beschikbaar
+					{% else %}
+						{{ vacancy.properties|safe|linebreaks }}
+					{% endif %}
+			</p>
+		</div>
+		
+		<div class="demands">
+			<h3>Eisen</h3>
+			<p>
+				{% if vacancy.demands == "null" %}
+					Deze informatie is helaas niet beschikbaar
+				{% else %}
+					{{ vacancy.demands|safe|linebreaks }}
+				{% endif %}
+			</p>
+		</div>
+		
+		<div class="knowledge">
+			<h3>Kennis</h3>
+			<p>
+				{% if vacancy.knowledge == "null" %}
+					Deze informatie is helaas niet beschikbaar
+				{% else %}
+					{{ vacancy.knowledge|safe|linebreaks }}
+				{% endif %}
+			</p>
+		</div>
+	</div>
+	
+	
+{% endblock %}

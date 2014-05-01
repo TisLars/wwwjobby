@@ -1,0 +1,9 @@
+			<h3><a href="/vacancy/{{ result.object.id }}">{{ result.object.job }}</a></h3>
+			
+			<div class="post_meta">
+				Geplaatst op {{ result.object.timestamp|date:"d-m" }} <br /> <br />
+			</div>
+			
+			<div class="post_body">
+				{{ result.object.offer|safe|linebreaks|truncatechars:300 }} <b><a href="/vacancy/{{ result.object.id }}">Lees meer</a></b><hr />
+			</div>

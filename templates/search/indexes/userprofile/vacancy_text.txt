@@ -1,0 +1,14 @@
+{{ object.job }}
+{{ object.description }}
+{{ object.offer }}
+
+{{ object.text }}
+{{ object.region }}
+{{ object.sector }}  
+{{ object.level }}
+{{ object.employment }}
+{{ object.offer }}
+{{ object.properties }}
+{{ object.demands }}
+{{ object.knowledge }}
+{{ object.timestamp }}

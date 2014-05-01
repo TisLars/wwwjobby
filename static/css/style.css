@@ -1,4 +1,7 @@
-html, body, div, h1, h2, h3, h4, h5, h6, p, a, font, img {
+*{
+	font-size:16px;
+}
+html, body, div, h1, h2, h3, h4, h5, h6, p, a, img {
 	margin: 0px;
 	padding: 0px;
 	border: 0px none;
@@ -32,12 +35,16 @@ body {
 }
 
 #logo h1 {
-	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
 	letter-spacing: 10px;
 	text-align: center;
 	font-size: 5em;
 	margin: 0px;
 	color: white;
+}
+#logo h1 a{
+	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
+	color:white;
+	text-decoration:none;
 }
 
 #menu {
@@ -46,6 +53,10 @@ body {
 	margin: 0 auto;
 	padding: 0%;
 	text-align: center;
+}
+
+#user {
+	float: right;
 }
 
 #menu ul {
@@ -141,4 +152,113 @@ body {
 	margin-top: 2%;
 	background-color: #60B9CE;
 	border-radius: 5px;
+}
+
+.vacancylist a,
+.cvlist a{
+	text-decoration:none;	
+}
+	
+.vacancylist a:hover,
+.cvlist a:hover{
+	color: darkred;
+	text-decoration:underline;
+}
+
+.back{
+	margin-bottom:25px;
+}
+.back a{
+	text-decoration:none;
+	color: darkred;
+}
+.back a:hover{
+	text-decoration:underline;
+	font-weight:bold;
+	color: darkblue;
+}
+
+#vacancy {
+	
+}
+#vacancy a,
+#cv a{
+	color: darkblue;
+	text-decoration: none;
+}
+#vacancy .timestamp,
+#cv .timestamp{
+	color: grey;
+	font-size: 12px;
+}
+#vacancy .information,
+#cv .information{
+	margin-bottom: 25px;
+	font-size: 14px;
+}
+#vacancy .information .info_label,
+#cv .information .info_label{
+	margin-top: 5px;
+	font-weight: bold;
+	color: darkblue;
+}
+#vacancy .information .info_label span,
+#cv .information .info_label span{
+	color: darkred;
+		
+}
+#vacancy h3,
+#cv h3{
+	color: darkblue;
+	margin-bottom: 5px;
+	font-size:14px;
+}
+#vacancy .beschrijving,
+#vacancy .offer,
+#vacancy .properties,
+#vacancy .demands,
+#vacancy .knowledge,
+#cv .discipline,
+#cv .experience,
+#cv .education,
+#cv .looking_for{
+	font-size: 14px;
+	margin-bottom: 25px;
+	border-bottom: 2px dashed darkred;
+}
+
+.cvorvacancy{
+	margin-bottom:25px;
+}
+.cvorvacancy a{
+	text-decoration:none;
+}
+.cvorvacancy a:hover{
+	color:darkred;
+	font-weight:bold;
+	text-decoration:underline;
+}
+.cvorvacancy .selected{
+	font-weight:bold;
+}
+
+.errorlist{
+	color: red;
+	font-weight:bold;
+}
+.registration_error{
+	margin:10px; 
+	color:red;
+	font-weight:bold;
+}
+
+.linked{
+	float: right;
+	text-align:right;
+}
+.linked ul{
+	list-style:none;
+}
+.linked a:hover{
+	color: darkred !important;
 }

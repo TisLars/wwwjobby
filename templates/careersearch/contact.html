@@ -1,0 +1,50 @@
+{% extends "careersearch/base.html" %}
+
+<!-- block to display user auth status and registration link -->
+{% block auth %}
+	{% if user.is_authenticated %}
+		<a href="/accounts/logout/">logout</a>
+	{% else %}
+		<a href="/accounts/login/">login</a>
+	{% endif %}
+{% endblock %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+	{% if news_list %}
+		<ul>
+			{% for news in news_list %}
+				<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}
+
+<!-- block to display 1 detailed news item -->
+{% block content %}
+<h3>Stuur ons een berichtje</h3>
+
+<form action="/contact/" method="post">{% csrf_token %}
+	<table cellpadding="5">
+		<tr>
+			<td><label for="id_subject">Onderwerp:</label></td>
+			<td>{{ form.subject }}</td>
+			<td>{{ form.subject.errors }}</td>
+		</tr>
+		<tr>
+			<td><label for="id_message">Bericht:</label></td>
+  		<td><textarea name="message" id="id_message" rows="4" cols="30" >Vul hier uw bericht in</textarea></td>
+  		<td>{{ form.message.errors }}</td>
+		</tr>
+		<tr>
+			<td><label for="id_sender">Uw email:</label></td>
+			<td>{{ form.sender }}</td>
+			<td>{{ form.sender.errors }}</td>
+		</tr>
+		<tr>
+				<td> &nbsp; </td>
+				<td><p><input type="submit" value="Verstuur" /></p></td>
+		</tr>
+	</table>
+</form>
+{% endblock %}

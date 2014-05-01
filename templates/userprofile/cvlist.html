@@ -1,0 +1,55 @@
+{% extends "careersearch/base.html" %}
+
+<!-- block to display user auth status and registration link -->
+{% block auth %}
+ {% if user.is_authenticated %}
+  <a href="/accounts/logout/">logout</a>
+ {% else %}
+  <a href="/accounts/login/">login</a>
+ {% endif %}
+{% endblock %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	<p class="cvorvacancy">
+		<a href="/cv/overview/" class="selected">CV's</a> / <a href="/vacancy/overview/" >Vacatures</a>
+	</p>
+
+	{% if cvlist %}
+	    <ul>
+	    {% for cv in cvlist %}
+	        <li><a href="/cv/{{ cv.id }}/">{{ cv.city }} | {{ cv.job }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No cv's are available.</p>
+	{% endif %}
+	
+	<div class="pagination">
+	    <span class="step-links">
+    	    {% if cvlist.has_previous %}
+	    	    <a href="?page={{ cvlist.previous_page_number }}">previous</a>
+	        {% endif %}
+	
+    	    <span class="current">
+        	    Page {{ cvlist.number }} of {{ cvlist.paginator.num_pages }}.
+    	    </span>
+
+	        {% if cvlist.has_next %}
+            <a href="?page={{ cvlist.next_page_number }}">next</a>
+    	    {% endif %}
+	    </span>
+	</div>
+	
+{% endblock %}

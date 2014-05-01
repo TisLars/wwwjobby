@@ -1,0 +1,104 @@
+{% extends "careersearch/base.html" %}
+
+<!-- block to display user auth status and registration link -->
+{% block auth %}
+ {% if user.is_authenticated %}
+  <a href="/accounts/logout/">logout</a>
+ {% else %}
+  <a href="/accounts/login/">login</a>
+ {% endif %}
+{% endblock %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+	<p class="back">
+		<a href="/cv/overview/"> &lt; Terug naar overzicht </a>
+	</p>
+
+
+	<div id="cv">
+	
+		<h2><a href="/cv/{{ cv.id }}">{{ cv.job|safe }}</a></h2>
+		
+		<div class="linked">
+			Deze CV is gelinked met de volgende vacatures:
+			<ul>
+			{% for m in match %}
+				<li><a href="/vacancy/{{ m.vacancy_id }}">{{ m.vacancy_id }}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+		
+		<div class="timestamp">
+				Geplaatst op: {{ cv.post_date|date:"d-m" }} <br /> <br />
+		</div>
+		
+		<div class="information">
+			<div class="info_label"><span>Provincie:</span> {{ cv.province|safe }}</div>
+			<div class="info_label"><span>Plaats:</span> {{ cv.city|safe }}</div>
+			<div class="info_label"><span>Geslacht:</span> {{ cv.sex }}</div>
+			<div class="info_label"><span>Opleidingsniveau:</span> {{ cv.education_level }}</div>
+			<div class="info_label"><span>Geboortedatum:</span> {{ cv.date_of_birth|date:"d-m-Y" }}</div>
+			<div class="info_label"><span>Rijbewijs:</span> {{ cv.drivers_license }}</div>
+			<div class="info_label"><span>Auto:</span> {{ cv.car }}</div>
+		</div>
+		
+		<div class="discipline">
+			<h3>Discipline</h3>
+			<p>
+				{% if cv.discipline == "null" %}
+					Deze informatie is helaas niet beschikbaar
+				{% else %}
+					{{ cv.discipline|safe|linebreaks }}
+				{% endif %}
+			</p>
+		</div>
+		
+		<div class="experience">
+			<h3>Ervaring</h3>
+			<p>
+				{% if cv.experience == "null" %}
+					Deze informatie is helaas niet beschikbaar
+				{% else %}
+					{{ cv.experience|safe|linebreaks }}
+				{% endif %}
+			</p>
+		</div>
+		
+		<div class="education">
+			<h3>Opleiding</h3>
+			<p>
+				{% if cv.education == "null" %}
+					Deze informatie is helaas niet beschikbaar
+				{% else %}
+					{{ cv.education|safe|linebreaks }}
+				{% endif %}
+			</p>		
+		</div>
+		
+		<div class="looking_for">
+			<h3>Ik ben opzoek naar</h3>
+			<p>
+				{% if cv.looking_for == "null" %}
+					Deze informatie is helaas niet beschikbaar
+				{% else %}
+					{{ cv.looking_for|safe|linebreaks }}
+				{% endif %}
+			</p>	
+		</div>
+	
+	</div>
+	
+{% endblock %}

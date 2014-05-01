@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8" />
+ <title>Jobby - Jouw resource voor IT vacatures</title>
+ <meta name="description" content="Omgeving voor werkzoekende in de IT branche." />
+ <meta name="keywords" content="vacature, programmeren, it, informatica, werkzoekende" />
+
+ <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+ <div id="headerWrapper">
+  <div id="header" class="container">
+   <div id="logo">
+    <h1>
+    	<a href="/">Jobby</a>
+	</h1>
+   </div>
+  </div>
+
+  <div id="menu">
+   <ul>
+    <li><a href="/">home</a></li>
+    <li><a href="/info/">wie zijn wij</a></li>
+    <li><a href="/accounts/edit_profile/">mijn jobby</a></li>
+    <li><a href="/contact/">contact</a></li>
+   </ul>
+  </div>
+ </div>
+
+ <div id="wrapper">
+  <div id="page">
+   <div id="user">
+    {% block auth %}
+    {% endblock %}
+
+    <a href="/accounts/register">registreren</a>
+   </div>
+
+   <div id="search">
+    <p>
+     <form action="/search">
+      <label for="functie">functie</label>
+      <input id="functie" type="text" name="q" placeholder="php, webdeveloper, java etc." maxlength="50" size="60" required>
+
+      <input type="submit" value="zoek" name="submit">
+     </form>
+    </p>
+   </div>
+
+   <aside class="headlines">
+    <article>
+     <h3>Nieuwtjes</h3>
+     {% block news %}
+
+     {% endblock %}
+    </article>
+   </aside>
+
+   <div id="contentWrapper">
+    <article class="careerItem">
+     {% block content %}
+
+     {% endblock %}
+    </article>
+    <div style="clear: both;"></div>
+   </div>
+
+   <footer class="mainFooter">
+    <p>copyright &copy; Jobby 2013 - 2014</p>
+   </footer>
+  </div>
+ </div>
+</body>
+</html>

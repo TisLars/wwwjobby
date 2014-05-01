@@ -1,0 +1,71 @@
+{% extends "careersearch/base.html" %}
+
+<!-- block to display user auth status and registration link -->
+{% block auth %}
+ {% if user.is_authenticated %}
+  <a href="/accounts/logout/">logout</a>
+ {% else %}
+  <a href="/accounts/login/">login</a>
+ {% endif %}
+{% endblock %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+<!-- block to display ALL vacancy items -->
+{% block content %}
+
+	<p class="cvorvacancy">
+		<a href="/cv/overview/">CV's</a> / <a href="/vacancy/overview/" class="selected">Vacatures</a>
+	</p>
+	
+	<div class="vacancylist">
+		
+	{% for vacancy in vacancy_list %}
+			<h3><a href="/vacancy/{{ vacancy.id }}">{{ vacancy.job }}</a></h3>
+			
+			<div class="post_meta">
+				Geplaatst op {{ vacancy.timestamp|date:"d-m" }} <br /> <br />
+			</div>
+			
+			<div class="post_body">
+				{% if vacancy.offer == "null" %}
+						{% if vacancy.description == "null" %}
+							<b><a href="/vacancy/{{ vacancy.id }}">Bekijk deze vacature!</a></b><hr />
+						{% else %}
+							{{ vacancy.description|safe|linebreaks|truncatechars:300 }} <b><a href="/vacancy/{{ vacancy.id }}">Lees meer</a></b><hr />
+						{% endif %}
+					{% else %}
+						{{ vacancy.offer|safe|linebreaks|truncatechars:300 }} <b><a href="/vacancy/{{ vacancy.id }}">Lees meer</a></b><hr />
+					{% endif %}
+			</div>
+		
+	{% endfor %}
+	
+	</div>
+	
+	<div class="pagination">
+	    <span class="step-links">
+    	    {% if vacancy_list.has_previous %}
+	    	    <a href="?page={{ vacancy_list.previous_page_number }}">previous</a>
+	        {% endif %}
+	
+    	    <span class="current">
+        	    Page {{ vacancy_list.number }} of {{ vacancy_list.paginator.num_pages }}.
+    	    </span>
+
+	        {% if vacancy_list.has_next %}
+            <a href="?page={{ vacancy_list.next_page_number }}">next</a>
+    	    {% endif %}
+	    </span>
+	</div>
+	
+{% endblock %}

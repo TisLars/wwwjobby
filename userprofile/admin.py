@@ -1,27 +1,39 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib import admin
-from userprofile.models import User, Usertype, CV
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+from userprofile.models import CV, Vacancy, Match, UserProfile
 
+# User start #
+#class UserProfileAdmin(admin.ModelAdmin):
+class UserProfileAdmin(admin.ModelAdmin):
+ search_fields = ['location', 'expertise', 'date_of_birth']
+ list_filter = ('location', 'expertise', 'date_of_birth')
+ list_display = ('location', 'expertise', 'date_of_birth')
 
-class UserTypeAdmin(admin.ModelAdmin):
-	fields = ['typename']
+admin.site.register(UserProfile)
+# User end #
 
-admin.site.register(Usertype, UserTypeAdmin)
+# CVAdmin start #
+class CVAdmin(admin.ModelAdmin):
+	search_fields = ['job','education_level']
+	list_filter = ('province','education_level')
+	list_display = ('user', 'job','city','province','education_level')
 
+admin.site.register(CV, CVAdmin)
+# CVAdmin end #
 
-# class UserAdminForm(ModelForm):
-# 	headline = MyFormField(max_length=200, required=False,
-#                            help_text="Use puns liberally")
+# VacancyAdmin start #
+class VacancyAdmin(admin.ModelAdmin):
+	search_fields = ['user', 'job', 'region', 'sector', 'level']
+	list_filter = ('level', 'sector')
+	list_display = ('user','job', 'region', 'level')
+		
+admin.site.register(Vacancy, VacancyAdmin)
+# VacancyAdmin stop #
 
-# 	class Meta:
-# 		model = User
-# 		fields = ['headline', 'username']
+# MatchAdmin start #
 
-
-
-class UserAdmin(admin.ModelAdmin):
-	fields = ['userType', 'username', 'password', 'firstname', 'middlename', 'lastname']
-
-
-admin.site.register(User, UserAdmin)
+admin.site.register(Match)
+# MatchAdmin stop #

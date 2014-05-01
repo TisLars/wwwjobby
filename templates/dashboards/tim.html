@@ -1,0 +1,110 @@
+
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Tim's dashboard!</title>
+		<script language="javascript" type="text/javascript" src="{% static 'js/timdashboard/jquery.min.js' %}"></script>
+		<script language="javascript" type="text/javascript" src="{% static 'js/timdashboard/flot/jquery.flot.js' %}"></script>
+		<script language="javascript" type="text/javascript" src="{% static 'js/timdashboard/flot/jquery.flot.pie.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/timdashboard/timStyle.css' %}" />
+	</head>
+	
+	<body>
+		<div id="main">
+			<h1>Dashboard: Tim</h1>
+			
+			<P> Op dit moment staan er {{ vacancycount }} vacatures op Jobby, </P>
+			<P> Staan er {{ cvcount }} cv's op, </P>
+			<P> En zijn er {{ matchcount }} matches gevonden.</P>
+			<div id="container" style="text-align:center; width:100%;">
+				<div id="leftGraph" style="display:inline-block;width:300px;">
+					<p class="Ptitles">Verdeling Vacatures en Cv's</p>
+					<div id="Pie1" style="width:300px;height:300px" ></div>
+				</div>
+				<div id="rightGraph" style="display:inline-block;width:300px;">
+					<p class="Ptitles">Matches tegenover totaal aantal Cv's</p>
+					<div id="Pie2" style="width:300px;height:300px" ></div>
+				</div>
+				<div id="bottomGraph" style="clear:both; display:inline-block;width:800px;">
+				<P class="Ptitles">Verdeling werkzoekenden over provincies</P>
+				<div id="Bars" style="width:800px;height:300px"></div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+
+	var pie1Data = [
+						{ label: "Cv's", data:[[0, {{ cvcount }} ] ] },
+						{ label: "Vacancies", data:[[1, {{ vacancycount }} ] ] }
+					 ]
+	
+	$.plot($("#Pie1"), pie1Data, {
+        series: {
+	        pie: {
+	        	innerRadius: 0.3,
+	        	show: true,
+
+	        }
+	  	},
+	  	legend: {
+	  		show:false
+	  	},
+    });
+    
+    var pie2Data=[
+    				{ label: "Cv's", data:[[0, {{ cvcount }} ] ], color:" #FFCACA"}, 
+    				{ label: "Matches", data:[[1, {{ matchcount }} ] ], color:"#6C91FF" }
+    		     ]
+    
+    $.plot($("#Pie2"), pie2Data, {
+        series: {
+	        pie: {
+	        	innerRadius: 0.3,
+	        	show: true,
+
+	        }
+	  	},
+	  	legend: {
+	  		show:false
+	  	},
+    });
+    
+    var provincesData = [];
+    var provinceTicks = [];
+    
+    var i =0;
+    {% for province,v in leveldict.iteritems %}
+    	provincesData[i] = [i, {{ v }}],
+    	provinceTicks[i] = [i, "{{ province }}"],
+    	i++
+    {% endfor %}
+    
+    console.log(provincesData);
+    console.log(provinceTicks);
+    
+    
+    var provincesDataset = 
+    	[
+    		{ label: "Aantal CV's", data: provincesData }
+    	];
+        
+    $.plot($("#Bars"), provincesDataset, {
+        series: {
+	        bars: {
+	        	show: true
+	        }
+	  	},
+	  	bars: {
+	  		align: "center"
+	  	},
+	  	xaxis: {           
+		  ticks: provinceTicks
+		}
+    });
+    
+    
+</script>

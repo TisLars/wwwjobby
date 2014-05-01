@@ -1,0 +1,29 @@
+.Ptitles
+{
+	text-shadow:1px 1px 0 rgba(184,184,184,1);
+	font-weight:normal;
+	text-decoration:underline overline;
+	color:#000000;
+	letter-spacing:0pt;
+	word-spacing:0pt;
+	font-size:15px;
+	text-align:center;
+	font-family:helvetica, sans-serif;line-height:1;
+}
+
+ body {
+text-align: center;
+background-color:#00CCFF;
+}
+#main {
+width: 900px;
+margin: 0 auto;
+padding: 10;
+text-align: left;
+background-color:WHITE;
+border-radius: 15px;
+}
+
+.pieLabel{
+	font-size:10px;
+}
