@@ -20,4 +20,13 @@ urlpatterns = patterns('',
 
 	# Url leads to an info page
 	url(r'info/$', 'careersearch.views.info'),
+
+	# Url leads to a contact page
+	url(r'contact/$', 'careersearch.views.contact'),
+
+	#User auth
+	url(r'^accounts/login/$', 'careersearch.views.login'),
+	url(r'^accounts/auth', 'careersearch.views.auth_view'),
+	url(r'^accounts/logout/$', 'careersearch.views.logout'),
+	url(r'^accounts/invalid/$', 'careersearch.views.invalid_login'),
 )

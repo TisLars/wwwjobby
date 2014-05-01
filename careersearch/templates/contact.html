@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+<!-- block to display ALL news item -->
+{% block news %}
+{% if news_list %}
+<ul>
+	{% for news in news_list %}
+	<li><h3><a href="/news/{{ news.id }}">{{ news.title }}</a></h3></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+<!-- block to display 1 detailed news item -->
+{% block content %}
+<h3>Stuur ons een berichtje</h3>
+
+<form action="/contact/" method="post">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
+{% endblock %}

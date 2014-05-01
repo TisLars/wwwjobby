@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'jobby.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'unreal',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -24,6 +24,13 @@ DATABASES = {
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
+
+# Settings to allow users send emails to the specified hosts below
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'jobbymailserver@gmail.com'
+EMAIL_HOST_PASSWORD = 'MailAccepted'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
